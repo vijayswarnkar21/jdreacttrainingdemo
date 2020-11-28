@@ -23,7 +23,7 @@ const LoginContainer = (props) => {
 
         setLoading(true);
         props.authenticate(username,password).then(() => {
-            //alert("success");
+            props.history.push('/dashboard');
         })
         .catch(() => {
             setLoading(false);

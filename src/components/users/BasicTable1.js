@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import MOCK_DATA from "./MOCK_DATA.json";
 import ReactPaginate from 'react-paginate';
+import NavBar from "../navbar/NavbarComponent";
 
 const BasicTable1 = () => {
     const [offset, setOffset] = useState(0);
@@ -16,7 +17,6 @@ const BasicTable1 = () => {
     }
     
     const handlePageClick = (e) => {
-        debugger;
         const selectedPage = e.selected;
         setOffset(selectedPage)
     };
@@ -27,6 +27,7 @@ const BasicTable1 = () => {
 
     return (
         <div>
+            <NavBar />
             <table className = "table">
                 <thead className = "thead-dark">
                     <tr>

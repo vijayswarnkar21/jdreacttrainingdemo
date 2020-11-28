@@ -1,6 +1,7 @@
 import {
     LOGIN_SUCCESS,
-    LOGIN_FAIL
+    LOGIN_FAIL,
+    LOGOUT
 } from "./loginTypes";
 import AuthService from "../../services/auth-service";
 
@@ -21,10 +22,10 @@ export const loginFailure = (error) => {
 
 
 
+
+
 export const authenticate = (username, password) => {
-    debugger;
     return (dispatch) => {
-        debugger;
         return AuthService.authenticate(username, password).then(
             (data) => {
                 if (data.success) {
@@ -36,5 +37,14 @@ export const authenticate = (username, password) => {
             .catch(error => {
                 dispatch(loginFailure(error.message))
             })
+    }
+}
+
+export const logout = () => {
+    return (dispatch) => {
+        AuthService.logout();
+        dispatch({
+            type: LOGOUT
+        })
     }
 }

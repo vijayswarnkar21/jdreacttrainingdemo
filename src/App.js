@@ -6,18 +6,24 @@ import BasicTable1 from "./components/users/BasicTable1";
 import NavBar from "./components/navbar/NavbarComponent";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import PrivateRoute from './utils/PrivateRoute';
+import PublicRoute from './utils/PublicRoute';
 
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <div className="container">
-          {/* <NavBar /> */}
-          <LoginContainer></LoginContainer>
-          {/* <BasicTable1></BasicTable1> */}
+      <BrowserRouter>
+        <div>
+          <div className="container mt-5">
+            <Switch>
+              <Route exact path="/" component={BasicTable1} />
+              <PublicRoute path="/login" component={LoginContainer} />
+              <PrivateRoute path="/dashboard" component={BasicTable1} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     </Provider>
   );
 }

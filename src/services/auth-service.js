@@ -4,13 +4,15 @@ import { config } from "../configs";
 const API_URL = config.baseUrl;;
 
 const authenticate = (username, password) => {
+    debugger;
     return axios
       .post(API_URL + "auth/signin", {
         username,
         password,
       })
       .then((response) => {
-        if (response.data.accessToken) {
+          debugger;
+        if (response.data.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
   

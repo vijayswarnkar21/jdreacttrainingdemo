@@ -22,10 +22,16 @@ export const loginFailure = (error) => {
 
 
 export const authenticate = (username, password) => {
+    debugger;
     return (dispatch) => {
+        debugger;
         return AuthService.authenticate(username, password).then(
             (data) => {
-                dispatch(loginSucecss(data));
+                if (data.success) {
+                    dispatch(loginSucecss(data));
+                } else {
+                    dispatch(loginFailure(data.message))
+                }
             })
             .catch(error => {
                 dispatch(loginFailure(error.message))

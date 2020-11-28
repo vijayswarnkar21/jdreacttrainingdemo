@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { authenticate } from '../../redux';
+import { connect } from 'react-redux';
 
 const LoginContainer = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const message = "";
+    
 
     const onChangeUsername = (e) => {
         const username = e.target.value;
@@ -17,13 +18,25 @@ const LoginContainer = (props) => {
         setPassword(password);
     };
 
-    const handleLogin = () => {
-        setLoading(true);
-        props.authenticate(username,password)
-    }
+    const handleLogin = (e) => {
+        e.preventDefault();
 
+        setLoading(true);
+        props.authenticate(username,password).then(() => {
+            //alert("success");
+        })
+        .catch(() => {
+            setLoading(false);
+        });;
+        setLoading(false);
+
+    }
     if (props.userData.isLoggedIn) {
-        return alert("already logged in");
+        return (
+            <div>
+                Already logged in
+            </div>
+        )
     }
 
     return (
@@ -48,7 +61,7 @@ const LoginContainer = (props) => {
                                 <div className="form-label-group mt-3">
                                     <label htmlFor="password">password</label>
                                     <input
-                                        type="text"
+                                        type="password"
                                         className="form-control"
                                         name="password"
                                         value={password}
@@ -67,10 +80,10 @@ const LoginContainer = (props) => {
                                 </div>
 
                                 {
-                                    message && (
+                                    props.userData.error && (
                                         <div className="form-label-group">
-                                            <div className="alert alert-danger" role="alert">
-                                                {message}
+                                            <div className="alert alert-danger mt-3" role="alert">
+                                                {props.userData.error}
                                             </div>
                                         </div>
                                     )
@@ -86,7 +99,7 @@ const LoginContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        userData: state.user.user
+        userData: state.user
     }
 }
 

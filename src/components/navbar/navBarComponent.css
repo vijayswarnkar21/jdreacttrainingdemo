@@ -27,22 +27,22 @@
       height: 65px;
     }
 
-    a:link {
+    .brand:link {
         color: white;
         background-color: transparent;
         text-decoration: none;
       }
-      a:visited {
+      .brand:visited {
         color: white;
         background-color: transparent;
         text-decoration: none;
       }
-      a:hover {
+      .brand:hover {
         color: white;
         background-color: transparent;
         text-decoration: underline;
       }
-      a:active {
+      .brand:active {
         color: white;
         background-color: transparent;
         text-decoration: underline;

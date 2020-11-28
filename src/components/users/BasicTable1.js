@@ -46,7 +46,7 @@ const BasicTable1 = () => {
                             <td>{x.department}</td>
                             <td>{x.designation}</td>
                             <td>
-                                <a href={`/employee/update/${x.id}`}>Edit</a>
+                                <a href='#'>Edit</a>
                             </td>
                         </tr>
                     ))

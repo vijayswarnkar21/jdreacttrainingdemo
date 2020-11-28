@@ -5,9 +5,8 @@ const NavbarComponent = () => {
     return (
         <div className="spacer">
             <div className="navbar">
-                <a href = "#" className= "brand"> test1</a>
-                <a href = "#" className= "brand"> test2</a>
-                <a href = "#" className= "brand"> test3</a>
+                <a href = "#" className= "brand"> Logout</a>
+                <a href = "#" className= "brand"> Create</a>
             </div>
         </div>
     );

@@ -9,9 +9,9 @@ function App() {
   return (
     <div>
       <div className="container">
-        <NavBar />
+        {/* <NavBar /> */}
         <LoginContainer></LoginContainer>
-        <BasicTable1></BasicTable1>
+        {/* <BasicTable1></BasicTable1> */}
       </div>
     </div>
   );

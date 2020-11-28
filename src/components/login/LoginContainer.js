@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { authenticate } from '../../redux';
 
-const LoginContainer = () => {
+const LoginContainer = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -17,8 +18,14 @@ const LoginContainer = () => {
     };
 
     const handleLogin = () => {
-
+        setLoading(true);
+        props.authenticate(username,password)
     }
+
+    if (props.userData.isLoggedIn) {
+        return alert("already logged in");
+    }
+
     return (
         <React.Fragment>
             <div class="row mt-5">
@@ -77,4 +84,20 @@ const LoginContainer = () => {
     );
 }
 
-export default LoginContainer;
+const mapStateToProps = (state) => {
+    return {
+        userData: state.user.user
+    }
+}
+
+const mapDispathchToProps =  (dispatch) => {
+    return {
+        authenticate : (username,password) => dispatch(authenticate(username,password))
+    }
+}
+
+export default connect
+(mapStateToProps,
+ mapDispathchToProps)
+(LoginContainer)
+

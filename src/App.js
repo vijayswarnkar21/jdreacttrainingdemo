@@ -13,11 +13,13 @@ import PublicRoute from './utils/PublicRoute';
 function App() {
   return (
     <Provider store={store}>
+      
       <BrowserRouter>
         <div>
           <div className="container mt-5">
+          <NavBar />
             <Switch>
-              <Route exact path="/" component={BasicTable1} />
+              <PrivateRoute exact path="/" component={BasicTable1} />
               <PublicRoute path="/login" component={LoginContainer} />
               <PrivateRoute path="/dashboard" component={BasicTable1} />
             </Switch>

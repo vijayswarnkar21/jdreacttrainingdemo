@@ -2,6 +2,7 @@ import React from 'react';
 import "./navBarComponent.css"
 import { connect } from 'react-redux';
 import { logout } from '../../redux';
+import { withRouter } from 'react-router-dom'
 
 const NavbarComponent = (props) => {
     const logout = () => {
@@ -35,4 +36,4 @@ const mapDispathchToProps =  (dispatch) => {
 
 export default connect
 (mapStateToProps,mapDispathchToProps)
-(NavbarComponent)
+(withRouter(NavbarComponent))

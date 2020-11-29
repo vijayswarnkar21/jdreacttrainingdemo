@@ -1,0 +1,2 @@
+export const USER_LITS_SUCCESS = "USER_LITS_SUCCESS";
+export const USER_LITS_FAIL = "USER_LITS_FAIL";

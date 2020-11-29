@@ -19,11 +19,6 @@ export const loginFailure = (error) => {
     }
 }
 
-
-
-
-
-
 export const authenticate = (username, password) => {
     return (dispatch) => {
         return AuthService.authenticate(username, password).then(
@@ -35,7 +30,7 @@ export const authenticate = (username, password) => {
                 }
             })
             .catch(error => {
-                dispatch(loginFailure(error.message))
+                dispatch(loginFailure(error.message || "somthing went wrong"))
             })
     }
 }

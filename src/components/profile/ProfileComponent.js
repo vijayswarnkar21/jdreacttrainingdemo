@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import logo from '../../avatar.png';
 
 const ProfileComponent = (props) => {
-    console.log("props---------------------------------->", props);
     return (
         <div>
             <div className="card">

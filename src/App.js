@@ -10,6 +10,7 @@ import { BrowserRouter, Switch} from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import User from "./components/users/User";
+import ProfileComponent from "./components/profile/ProfileComponent";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <PrivateRoute path="/dashboard" component={UserList} />
               <PrivateRoute path="/user/:id" component={User}/>
               <PrivateRoute path="/user" component={User}/>
+              <PrivateRoute path="/profile" component={ProfileComponent}/>
             </Switch>
           </div>
         </div>

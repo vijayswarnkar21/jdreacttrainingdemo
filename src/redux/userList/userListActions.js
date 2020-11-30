@@ -1,6 +1,6 @@
 import {
     USER_LITS_SUCCESS,
-    USER_LITS_FAIL
+    USER_LITS_FAIL,
 } from "./userListTypes";
 
 import UserService from "../../services/user-service";
@@ -21,15 +21,12 @@ export const fetchUserListFail = (error) => {
 }
 
 export const fetchUserList = () => {
-    debugger;
     return (dispatch) => {
         return UserService.getUsers().then(
             (response) => {
                 if(response.data.success){
-                    debugger;
                     dispatch(fetchUserListSuccess(response.data.data));
                 } else {
-                    debugger;
                     dispatch(fetchUserListFail(response.data.message));
                 }
             }

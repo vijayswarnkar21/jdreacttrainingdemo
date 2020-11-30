@@ -3,14 +3,12 @@ import ReactPaginate from 'react-paginate';
 import { fetchUserList } from '../../redux';
 import { connect } from 'react-redux';
 
-const BasicTable1 = (props) => {
+const UserList = (props) => {
     const [offset, setOffset] = useState(0);
     const [data, setData] = useState([]);
     const [perPage] = useState(10);
     const [pageCount, setPageCount] = useState(data.length / perPage)
-
-    const getData = async () => {
-
+    const getData = () => {
         const slice = props.userListData.slice(offset * perPage, offset * perPage + perPage)
         setData(slice)
         setPageCount(Math.ceil(props.userListData.length / perPage))
@@ -22,14 +20,16 @@ const BasicTable1 = (props) => {
     };
 
     useEffect(() => {
-        debugger;
         props.fetchUserList();
     },[])
 
     useEffect(() => {
         getData()
-    },[offset])
+    },[offset,props.userListData])
 
+    const editClick = (id) => {
+        props.history.push(`/user/${id}`);        
+    }
     return (
         <div>
             <table className="table">
@@ -38,8 +38,8 @@ const BasicTable1 = (props) => {
                         <th>ID</th>
                         <th>NAME</th>
                         <th>DEPARTMENT</th>
-                        <th>designation</th>
-                        <th>Action</th>
+                        <th>DESIGNATION</th>
+                        <th>ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@ const BasicTable1 = (props) => {
                                 <td>{x.department}</td>
                                 <td>{x.designation}</td>
                                 <td>
-                                    <a href='#'>Edit</a>
+                                    <button onClick = {() => editClick(x.id)}>Edit</button>
                                 </td>
                             </tr>
                         ))
@@ -89,4 +89,4 @@ const mapDispathchToProps = (dispatch) => {
 export default connect
     (mapStateToProps,
         mapDispathchToProps)
-    (BasicTable1)
+    (UserList)

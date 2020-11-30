@@ -1,7 +1,7 @@
 .navbar {
     position: fixed; /* Fixes navbar at certain spot on screen so that it will not move */
     top: 0; /* Sets the top of the navbar div to the very top of the screen */
-    width: 100%; /* Take up entire width of the screen */
+    width: 69%; /* Take up entire width of the screen */
     height: 65px;
     background-color: black;
     display: flex;

@@ -15,7 +15,7 @@ const NavbarComponent = (props) => {
         <div className="spacer">
             <div className="navbar">
                 <button onClick = {logout} className= "brand"> Logout</button>
-                <a href = "/user" className= "brand"> Create</a>
+                <span onClick = {() => props.history.push('/user')} className= "brand"> Create</span>
                 <a href = "/dashboard" className= "brand"> Dashboard</a>
                 <span className= "brand" onClick = {() => props.history.push('/profile')}> {props.userData.user.data.userInfo.name}</span>
             </div>

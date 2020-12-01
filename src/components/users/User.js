@@ -81,17 +81,17 @@ const User = (props) => {
                 <form>
                     <div className="form-group">
                         <label>Name:</label>
-                        <input type="text" className="form-control" name="name"
+                        <input type="text" maxLength={30} className="form-control" name="name"
                             value={user.name} onChange={changeUserData} />
                     </div>
                     <div className="form-group">
                         <label>Department:</label>
-                        <input type="text" className="form-control" name="department"
+                        <input type="text" maxLength={30} className="form-control" name="department"
                             value={user.department} onChange={changeUserData} />
                     </div>
                     <div className="form-group">
                         <label>Designation:</label>
-                        <input type="text" className="form-control" name="designation"
+                        <input type="text"  maxLength={30} className="form-control" name="designation"
                             value={user.designation} onChange={changeUserData} />
                     </div>
                     <button disabled={loading} onClick={onSubmit} className="btn btn-primary">Submit</button>

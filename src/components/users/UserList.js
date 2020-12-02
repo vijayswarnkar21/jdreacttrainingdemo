@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 import { fetchUserList } from '../../redux';
 import { connect } from 'react-redux';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const UserList = (props) => {
-    const [offset, setOffset] = useState(0);
+    const [start, setStart] = useState(0);
     const [data, setData] = useState([]);
-    const [perPage] = useState(10);
-    const [pageCount, setPageCount] = useState(data.length / perPage)
+    const [count] = useState(5);
     const getData = () => {
-        const slice = props.userListData.slice(offset * perPage, offset * perPage + perPage)
+        const slice = props.userListData.slice(start, count)
         setData(slice)
-        setPageCount(Math.ceil(props.userListData.length / perPage))
     }
 
-    const handlePageClick = (e) => {
-        const selectedPage = e.selected;
-        setOffset(selectedPage)
-    };
+    const onScrollChange = () => {
+        setStart(start + count)
+    }
 
     useEffect(() => {
         props.fetchUserList();
@@ -25,7 +22,7 @@ const UserList = (props) => {
 
     useEffect(() => {
         getData()
-    },[offset,props.userListData])
+    },[start,props.userListData])
 
     const editClick = (id) => {
         props.history.push(`/user/${id}`);        
@@ -43,6 +40,16 @@ const UserList = (props) => {
                     </tr>
                 </thead>
                 <tbody>
+                <InfiniteScroll
+                dataLength={props.userListData.length} //This is important field to render the next data
+                next={onScrollChange}
+                hasMore={true}
+                loader={<h4>Loading...</h4>}
+                endMessage={
+                  <p style={{ textAlign: 'center' }}>
+                    <b>Yay! You have seen it all</b>
+                  </p>
+                }>
                     {
                         data.map(x => (
                             <tr key={x.id}>
@@ -56,20 +63,9 @@ const UserList = (props) => {
                             </tr>
                         ))
                     }
+                    </InfiniteScroll>
                 </tbody>
             </table>
-            <ReactPaginate
-                previousLabel={"prev"}
-                nextLabel={"next"}
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"} />
         </div>
     );
 }

@@ -21,10 +21,8 @@ const User = (props) => {
     }
 
     useEffect(() => {
-        console.log("In useEffect");
         let _user = null;
         if (props.match && props.match.params && props.match.params.id) {
-            console.log("In if------------------>")
             _user = props.userListData.find(x => x.id == props.match.params.id);
             if (!_user) {
                 props.history.push(`/dashboard`);

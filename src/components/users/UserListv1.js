@@ -12,45 +12,51 @@ const Row = props => {
         border: "1px solid green",
         margin: 6,
         padding: 8
-      };
-     
+    };
+
     // const editClick = (id) => {
     //     props.history.push(`/user/${id}`);        
     // }
 
     return (
-        <div  style={style} className="row" key={x.id}>
-        <div className="col-md-3">{x.id}</div>
-        <div className="col-md-3">{x.name}</div>
-        <div className="col-md-3">{x.department}</div>
-        <div className="col-md-3">
-            <button>Edit</button>
+        <div style={style} className="row" key={x.id}>
+            <div className="col-md-3">{x.id}</div>
+            <div className="col-md-3">{x.name}</div>
+            <div className="col-md-3">{x.department}</div>
+            <div className="col-md-3">
+                <button>Edit</button>
+            </div>
         </div>
-    </div>
     )
 };
 
 const UserListv1 = (props) => {
+    //const [isItemLoaded, setIsItemLoaded] = useState(initialState);
+
     useEffect(() => {
         props.fetchUserList();
-    },[])
+    }, [])
 
     return (
-        <AutoSizer>
-        {({ height, width }) => (
-          <FixedSizeList
-            className="List"
-            height={1000}
-            itemCount={props.userListData.length}
-            itemSize={40}
-            width={width}
-            itemData= {props.userListData}
-            navigation = {props.history}
-          >
-            {Row}
-          </FixedSizeList>
-        )}
-      </AutoSizer>
+        <InfiniteLoader>
+            {({ onItemsRendered, ref }) => (
+                <AutoSizer>
+                    {({ height, width }) => (
+                        <FixedSizeList
+                            className="List"
+                            height={1000}
+                            itemCount={props.userListData.length}
+                            itemSize={40}
+                            width={width}
+                            itemData={props.userListData}
+                            navigation={props.history}
+                        >
+                            {Row}
+                        </FixedSizeList>
+                    )}
+                </AutoSizer>
+            )}
+        </InfiniteLoader>
     );
 }
 

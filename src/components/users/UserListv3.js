@@ -56,6 +56,7 @@ const UserListV3 = (props) => {
                     if( scroller.scrollTop === (scroller.scrollHeight - scroller.offsetHeight)){
                         props.userLitsV3Loadmore(props.currentPage+1);
                     }
+                    console.log("scroller.scrollTop------------------------->",scroller.scrollTop);
                     props.userLitsv3Scroll(scroller.scrollTop)
                 }}>
                     {

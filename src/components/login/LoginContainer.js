@@ -41,12 +41,12 @@ const LoginContainer = (props) => {
 
     return (
         <React.Fragment>
-            <div class="row mt-5">
+            <div className="row mt-5">
                 <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div className="card card-signin my-5">
                         <div className="card-body">
                             <h5 className="card-title text-center">Sign In</h5>
-                            <form class="form-signin">
+                            <form className="form-signin">
                                 <div className="form-label-group">
                                     <label htmlFor="username">Username</label>
                                     <input

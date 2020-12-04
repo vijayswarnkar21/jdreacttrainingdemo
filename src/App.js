@@ -12,6 +12,8 @@ import PublicRoute from './utils/PublicRoute';
 import User from "./components/users/User";
 import ProfileComponent from "./components/profile/ProfileComponent";
 import UserListV2 from "./components/users/UserListV2";
+import UserListV3 from "./components/users/UserListv3";
+
 
 function App() {
   return (
@@ -27,7 +29,7 @@ function App() {
               <PrivateRoute path="/user/:id" component={User}/>
               <PrivateRoute path="/user" component={User}/>
               <PrivateRoute path="/profile" component={ProfileComponent}/>
-              <PrivateRoute path="/infinitescroll" component={UserListV2}/>
+              <PrivateRoute path="/infinitescroll" component={UserListV3}/>
             </Switch>
           </div>
         </div>

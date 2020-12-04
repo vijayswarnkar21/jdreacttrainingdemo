@@ -46,11 +46,16 @@ class UserListV2 extends PureComponent {
         console.log("args------------------------------->", args);
         console.log("state.items.length--------------->", this.state.items.length);
         console.log("this.props.userListData.length------------>", this.props.userListData.length);
-        this.setState({
-            hasNextPage: this.state.items.length < this.props.userListData.length,
-            isNextPageLoading: false,
-            items: this.props.userListData.slice(0, args[0] + 10)
-        });
+
+        this.setState({ isNextPageLoading: true }, () => {
+            setTimeout(() => {
+              this.setState((state) => ({
+                hasNextPage: this.state.items.length < this.props.userListData.length,
+                isNextPageLoading: false,
+                items: this.props.userListData.slice(0, args[0] + 10)
+              }));
+            },500);
+          });
     };
 
     render() {

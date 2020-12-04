@@ -32,7 +32,7 @@ const UserList = (props) => {
     }
     return (
         <div>
-            <table className="table">
+            <table className="table fixed_header">
                 <thead className="thead-dark">
                     <tr>
                         <th>ID</th>

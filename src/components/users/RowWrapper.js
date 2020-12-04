@@ -13,7 +13,7 @@ export default function RowWrapper({
     const isItemLoaded = (index) => !hasNextPage || index < items.length;
     const Item = ({ index, style }) => {
         const styleDiv = {
-            height: 50,
+            height: 60,
             border: "1px solid green",
             margin: 6,
             padding: 8
